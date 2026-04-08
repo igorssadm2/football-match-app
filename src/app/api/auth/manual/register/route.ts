@@ -13,9 +13,11 @@ function makeUserCookie(name: string, email: string): string {
   const value = encodeURIComponent(JSON.stringify({ name, email }));
   return `__session_user=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${SESSION_MAX_AGE}${secure}`;
 }
-
+//[remover] logging depois de testar
 export async function POST(request: Request) {
   let body: { name?: string; email?: string; password?: string };
+     console.log("registerBACKEND_URL value:", BACKEND_URL);
+  console.log("[register] process.env.BACKEND_URL:", process.env.BACKEND_URL);
   try {
     body = await request.json();
   } catch {
