@@ -38,9 +38,11 @@ async function resolveDestination(token: string): Promise<string> {
     return "/dashboard";
   }
 }
-
+//[remover] logging depois de testar
 export async function POST(request: Request) {
   let body: { email?: string; password?: string };
+   console.log("[v0] BACKEND_URL value:", BACKEND_URL);
+  console.log("[v0] process.env.BACKEND_URL:", process.env.BACKEND_URL);
   try {
     body = await request.json();
   } catch {
@@ -48,7 +50,8 @@ export async function POST(request: Request) {
   }
 
   const { email, password } = body;
-
+ console.log("[v0] Attempting to fetch:", `${BACKEND_URL}/api/v1/auth/login`);
+  
   let backendRes: Response;
   try {
     backendRes = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
