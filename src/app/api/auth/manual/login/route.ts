@@ -88,7 +88,9 @@ export async function POST(request: Request) {
   }
 
   const { token, name } = data as { token: string; name: string };
+  console.log("[v0] Login successful, token received, resolving destination...");
   const destination = await resolveDestination(token);
+  console.log("[v0] Resolved destination:", destination);
 
   const response = NextResponse.json({ ok: true, redirect: destination });
   response.headers.set("Set-Cookie", makeSessionCookie(token));
