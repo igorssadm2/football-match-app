@@ -40,6 +40,9 @@ async function resolveDestination(token: string): Promise<string> {
 }
 
 export async function POST(request: Request) {
+  console.log("[v0] BACKEND_URL value:", BACKEND_URL);
+  console.log("[v0] process.env.BACKEND_URL:", process.env.BACKEND_URL);
+  
   let body: { email?: string; password?: string };
   try {
     body = await request.json();
@@ -49,6 +52,8 @@ export async function POST(request: Request) {
 
   const { email, password } = body;
 
+  console.log("[v0] Attempting to fetch:", `${BACKEND_URL}/api/v1/auth/login`);
+  
   let backendRes: Response;
   try {
     backendRes = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
