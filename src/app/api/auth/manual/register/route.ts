@@ -15,6 +15,9 @@ function makeUserCookie(name: string, email: string): string {
 }
 
 export async function POST(request: Request) {
+  console.log("[v0] REGISTER - BACKEND_URL value:", BACKEND_URL);
+  console.log("[v0] REGISTER - process.env.BACKEND_URL:", process.env.BACKEND_URL);
+  
   let body: { name?: string; email?: string; password?: string };
   try {
     body = await request.json();
@@ -24,6 +27,8 @@ export async function POST(request: Request) {
 
   const { name, email, password } = body;
 
+  console.log("[v0] REGISTER - Attempting fetch to:", `${BACKEND_URL}/api/v1/auth/register`);
+  
   let backendRes: Response;
   try {
     backendRes = await fetch(`${BACKEND_URL}/api/v1/auth/register`, {
