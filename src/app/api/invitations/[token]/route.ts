@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { proxy } from "@/lib/proxyRoute";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:3100";
+const BACKEND_URL = (process.env.BACKEND_URL ?? "http://localhost:3100").replace(/\/+$/, "");
 
 type Params = { params: Promise<{ token: string }> };
 

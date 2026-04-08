@@ -1,7 +1,7 @@
 import { getSession } from "@/lib/firebase/session";
 import InviteClient from "./InviteClient";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:3100";
+const BACKEND_URL = (process.env.BACKEND_URL ?? "http://localhost:3100").replace(/\/+$/, "");
 
 interface InvitationPreview {
   id: string;

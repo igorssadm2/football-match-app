@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:3100";
+const BACKEND_URL = (process.env.BACKEND_URL ?? "http://localhost:3100").replace(/\/+$/, "");
 const SESSION_MAX_AGE = 604800; // 7 dias
 
 function makeSessionCookie(token: string): string {

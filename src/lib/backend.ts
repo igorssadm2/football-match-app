@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:3100";
+const BACKEND_URL = (process.env.BACKEND_URL ?? "http://localhost:3100").replace(/\/+$/, "");
 const COOKIE_NAME = "__session";
 
 async function getToken(): Promise<string> {
