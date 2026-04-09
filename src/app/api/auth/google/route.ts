@@ -9,7 +9,9 @@ export async function GET(request: Request) {
   }
 
   const url = new URL(request.url);
-  const origin = url.origin;
+  const proto = request.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", "");
+  const host = request.headers.get("x-forwarded-host") ?? url.host;
+  const origin = `${proto}://${host}`;
   const redirectParam = url.searchParams.get("redirect");
   const safeRedirect = redirectParam?.startsWith("/") ? redirectParam : null;
 
