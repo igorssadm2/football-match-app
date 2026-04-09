@@ -18,6 +18,11 @@ export async function GET(request: Request) {
   const state = crypto.randomBytes(16).toString("hex");
   const redirectUri = `${origin}/api/auth/callback/google`;
 
+  console.log("[auth/google] proto:", proto, "host:", host, "origin:", origin);
+  console.log("[auth/google] x-forwarded-proto:", request.headers.get("x-forwarded-proto"));
+  console.log("[auth/google] x-forwarded-host:", request.headers.get("x-forwarded-host"));
+  console.log("[auth/google] redirect_uri:", redirectUri);
+
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
